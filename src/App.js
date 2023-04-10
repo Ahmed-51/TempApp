@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { useState } from 'react'
 
-function App() {
+const App = () => {
+  const [tval, setTval] = useState(10)
+  const [tcol, setTcol] = useState('cold')
+
+  const inc = () =>{
+    var x = tval+1
+    if(x>30)return
+    setTval(x)
+    if(x>=15){
+      setTcol('hot')
+    }
+  }
+
+
+  const dec = () =>{
+    var x = tval-1
+    if(x<0)return
+    setTval(x)
+    if(x<15){
+      setTcol('cold')
+    }
+  }
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="main">
+      <div className="innerdiv1">
+        <div className={`tempshow ${tcol}`}>{tval}°C</div>
+      </div>
+      <div className="innerdiv2">
+        <button onClick={()=> inc()}>+</button>
+        <button onClick={()=> dec()}>-</button>
+      </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
